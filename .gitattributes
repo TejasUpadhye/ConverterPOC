@@ -1,0 +1,11 @@
+*.cs linguist-language=C#
+
+# Ignore generated/build files
+.vs/ linguist-vendored
+bin/ linguist-generated
+obj/ linguist-generated
+
+# Ignore web assets used by the local stand-in
+*.js linguist-vendored
+*.html linguist-vendored
+*.css linguist-vendored
