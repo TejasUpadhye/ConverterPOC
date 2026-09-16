@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FileConvert Pro</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #171a21;
+    --panel-2: #1d2129;
+    --line: #2a2f3a;
+    --text: #e6e9ef;
+    --muted: #8b93a5;
+    --accent: #4f7cff;
+    --accent-2: #6f9bff;
+    --ok: #3ecf8e;
+    --warn: #f5a524;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(900px 500px at 15% -10%, #1b2540 0%, transparent 60%),
+      radial-gradient(700px 400px at 110% 110%, #241b3a 0%, transparent 55%),
+      var(--bg);
+    color: var(--text);
+    font: 15px/1.5 "Segoe UI", system-ui, -apple-system, sans-serif;
+    padding: 24px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 560px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(0,0,0,.45);
+    overflow: hidden;
+  }
+
+  .card-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(79,124,255,.10), transparent);
+  }
+
+  .logo {
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(145deg, var(--accent), #8b5cf6);
+    font-weight: 700;
+    font-size: 15px;
+    color: #fff;
+  }
+
+  .brand { font-weight: 650; letter-spacing: .2px; }
+  .brand small {
+    display: block;
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0;
+  }
+
+  .pill {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px 10px;
+  }
+
+  .card-body { padding: 24px; }
+
+  h1 {
+    margin: 0 0 4px;
+    font-size: 19px;
+    font-weight: 620;
+  }
+
+  .sub {
+    margin: 0 0 20px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .drop {
+    border: 1.5px dashed var(--line);
+    border-radius: 12px;
+    background: var(--panel-2);
+    padding: 26px 20px;
+    text-align: center;
+    transition: border-color .2s, background .2s;
+  }
+  .drop.has-file {
+    border-color: rgba(79,124,255,.55);
+    background: rgba(79,124,255,.06);
+  }
+
+  .drop-icon {
+    font-size: 26px;
+    opacity: .75;
+    margin-bottom: 8px;
+  }
+
+  .filename {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 8px;
+    word-break: break-all;
+  }
+  .drop.has-file .filename { color: var(--text); }
+
+  /* The file input must stay in the DOM for Playwright's SetInputFiles. */
+  #file-upload {
+    display: block;
+    margin: 12px auto 0;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  #file-upload::file-selector-button {
+    background: var(--panel);
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 6px 12px;
+    margin-right: 10px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+  }
+  #file-upload::file-selector-button:hover { border-color: var(--accent); }
+
+  #convert-btn {
+    width: 100%;
+    margin-top: 18px;
+    padding: 12px 16px;
+    border: 0;
+    border-radius: 10px;
+    background: linear-gradient(180deg, var(--accent-2), var(--accent));
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter .15s, transform .05s;
+  }
+  #convert-btn:hover:not(:disabled) { filter: brightness(1.08); }
+  #convert-btn:active:not(:disabled) { transform: translateY(1px); }
+  #convert-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+  .track {
+    height: 5px;
+    border-radius: 999px;
+    background: var(--panel-2);
+    overflow: hidden;
+    margin-top: 18px;
+    opacity: 0;
+    transition: opacity .25s;
+  }
+  .track.on { opacity: 1; }
+  .bar {
+    height: 100%;
+    width: 0%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent), #8b5cf6);
+    transition: width .3s linear;
+  }
+
+  .statusline {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 14px;
+    font-size: 13px;
+  }
+
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--muted);
+    flex: none;
+  }
+  .dot.busy { background: var(--warn); animation: pulse 1.1s ease-in-out infinite; }
+  .dot.done { background: var(--ok); }
+  @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: .3 } }
+
+  #status { color: var(--muted); }
+  #status.busy { color: var(--text); }
+  #status.done { color: var(--ok); }
+
+  .eta { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; font-size: 12px; }
+
+  #download-link {
+    display: none;
+    margin-top: 18px;
+    padding: 11px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(62,207,142,.35);
+    background: rgba(62,207,142,.10);
+    color: var(--ok);
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+  }
+  #download-link:hover { background: rgba(62,207,142,.16); }
+
+  .foot {
+    padding: 13px 24px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-head">
+    <div class="logo">FC</div>
+    <div class="brand">
+      FileConvert Pro
+      <small>Document conversion service</small>
+    </div>
+    <div class="pill">No API</div>
+  </div>
+
+  <div class="card-body">
+    <h1>Convert to PDF</h1>
+    <p class="sub">Upload a single document. One conversion at a time.</p>
+
+    <div class="drop" id="drop">
+      <div class="drop-icon">&#128196;</div>
+      <div>Choose a file to convert</div>
+      <input type="file" id="file-upload" />
+      <div class="filename" id="filename">No file selected</div>
+    </div>
+
+    <button id="convert-btn">Convert</button>
+
+    <div class="track" id="track"><div class="bar" id="bar"></div></div>
+
+    <div class="statusline">
+      <span class="dot" id="dot"></span>
+      <span id="status">Ready</span>
+      <span class="eta" id="eta"></span>
+    </div>
+
+    <a id="download-link">Download converted file</a>
+  </div>
+
+  <div class="foot">
+    <span>Queue position: 1 of 1</span>
+    <span>Avg. conversion time ~10s</span>
+  </div>
+</div>
+
+<script>
+(function () {
+  var CONVERT_MS = 10000;
+
+  var input  = document.getElementById('file-upload');
+  var drop   = document.getElementById('drop');
+  var fname  = document.getElementById('filename');
+  var btn    = document.getElementById('convert-btn');
+  var track  = document.getElementById('track');
+  var bar    = document.getElementById('bar');
+  var dot    = document.getElementById('dot');
+  var status = document.getElementById('status');
+  var eta    = document.getElementById('eta');
+  var link   = document.getElementById('download-link');
+
+  input.addEventListener('change', function () {
+    var f = input.files[0];
+    if (f) {
+      drop.classList.add('has-file');
+      fname.textContent = f.name;
+    } else {
+      drop.classList.remove('has-file');
+      fname.textContent = 'No file selected';
+    }
+  });
+
+  btn.addEventListener('click', function () {
+    var f = input.files[0];
+    if (!f) {
+      status.textContent = 'Select a file first';
+      return;
+    }
+
+    // reset
+    link.style.display = 'none';
+    btn.disabled = true;
+    track.classList.add('on');
+    bar.style.width = '0%';
+    dot.className = 'dot busy';
+    status.className = 'busy';
+    status.textContent = 'Converting';
+
+    var started = Date.now();
+    var timer = setInterval(function () {
+      var pct = Math.min(100, (Date.now() - started) / CONVERT_MS * 100);
+      bar.style.width = pct.toFixed(1) + '%';
+      var left = Math.max(0, CONVERT_MS - (Date.now() - started)) / 1000;
+      eta.textContent = left.toFixed(1) + 's';
+    }, 100);
+
+    setTimeout(function () {
+      clearInterval(timer);
+      bar.style.width = '100%';
+      eta.textContent = '';
+
+      // Padded so the output is a realistic size, not 68 bytes.
+      var pdf = '%PDF-1.4\n'
+              + '1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj\n'
+              + '2 0 obj<</Type/Pages/Count 1>>endobj\n'
+              + '% ' + new Array(2001).join('x') + '\n'
+              + 'trailer<</Root 1 0 R>>\n%%EOF';
+
+      var blob = new Blob([pdf], { type: 'application/pdf' });
+      link.href = URL.createObjectURL(blob);
+      link.download = f.name.replace(/\.[^.]+$/, '') + '-converted.pdf';
+      link.style.display = 'block';
+
+      dot.className = 'dot done';
+      status.className = 'done';
+      status.textContent = 'Conversion complete';
+      btn.disabled = false;
+    }, CONVERT_MS);
+  });
+})();
+</script>
+
+</body>
+</html>

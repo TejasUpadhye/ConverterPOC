@@ -1,0 +1,92 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\TejasU\\source\\repos\\ConverterPoc\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{531A7AB6-0972-4E91-9B94-4453DD44EC96}|ConverterPoc\\ConverterPoc.csproj|c:\\users\\tejasu\\source\\repos\\converterpoc\\converterpoc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{531A7AB6-0972-4E91-9B94-4453DD44EC96}|ConverterPoc\\ConverterPoc.csproj|solutionrelative:converterpoc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{531A7AB6-0972-4E91-9B94-4453DD44EC96}|ConverterPoc\\ConverterPoc.csproj|c:\\users\\tejasu\\source\\repos\\converterpoc\\converterpoc\\workers\\conversionworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{531A7AB6-0972-4E91-9B94-4453DD44EC96}|ConverterPoc\\ConverterPoc.csproj|solutionrelative:converterpoc\\workers\\conversionworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{531A7AB6-0972-4E91-9B94-4453DD44EC96}|ConverterPoc\\ConverterPoc.csproj|c:\\users\\tejasu\\source\\repos\\converterpoc\\converterpoc\\validation\\outputvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{531A7AB6-0972-4E91-9B94-4453DD44EC96}|ConverterPoc\\ConverterPoc.csproj|solutionrelative:converterpoc\\validation\\outputvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{531A7AB6-0972-4E91-9B94-4453DD44EC96}|ConverterPoc\\ConverterPoc.csproj|c:\\users\\tejasu\\source\\repos\\converterpoc\\converterpoc\\pages\\converterpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{531A7AB6-0972-4E91-9B94-4453DD44EC96}|ConverterPoc\\ConverterPoc.csproj|solutionrelative:converterpoc\\pages\\converterpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ConversionWorker.cs",
+              "DocumentMoniker": "C:\\Users\\TejasU\\source\\repos\\ConverterPoc\\ConverterPoc\\Workers\\ConversionWorker.cs",
+              "RelativeDocumentMoniker": "ConverterPoc\\Workers\\ConversionWorker.cs",
+              "ToolTip": "C:\\Users\\TejasU\\source\\repos\\ConverterPoc\\ConverterPoc\\Workers\\ConversionWorker.cs",
+              "RelativeToolTip": "ConverterPoc\\Workers\\ConversionWorker.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAowGoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-13T08:02:32.042Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OutputValidator.cs",
+              "DocumentMoniker": "C:\\Users\\TejasU\\source\\repos\\ConverterPoc\\ConverterPoc\\Validation\\OutputValidator.cs",
+              "RelativeDocumentMoniker": "ConverterPoc\\Validation\\OutputValidator.cs",
+              "ToolTip": "C:\\Users\\TejasU\\source\\repos\\ConverterPoc\\ConverterPoc\\Validation\\OutputValidator.cs",
+              "RelativeToolTip": "ConverterPoc\\Validation\\OutputValidator.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAowDIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-13T08:02:16.712Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ConverterPage.cs",
+              "DocumentMoniker": "C:\\Users\\TejasU\\source\\repos\\ConverterPoc\\ConverterPoc\\Pages\\ConverterPage.cs",
+              "RelativeDocumentMoniker": "ConverterPoc\\Pages\\ConverterPage.cs",
+              "ToolTip": "C:\\Users\\TejasU\\source\\repos\\ConverterPoc\\ConverterPoc\\Pages\\ConverterPage.cs",
+              "RelativeToolTip": "ConverterPoc\\Pages\\ConverterPage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-13T08:02:01.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\TejasU\\source\\repos\\ConverterPoc\\ConverterPoc\\Program.cs",
+              "RelativeDocumentMoniker": "ConverterPoc\\Program.cs",
+              "ToolTip": "C:\\Users\\TejasU\\source\\repos\\ConverterPoc\\ConverterPoc\\Program.cs",
+              "RelativeToolTip": "ConverterPoc\\Program.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAowFkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-13T08:00:07.193Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
