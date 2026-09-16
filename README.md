@@ -51,8 +51,8 @@ Running it
 
 Prerequisites: .NET 10 SDK, and the Playwright browser binaries.
 
-powershell
-# one-time setup
+
+**one-time setup**
 dotnet restore
 dotnet build
 pwsh bin\Debug\net10.0\playwright.ps1 install chromium
